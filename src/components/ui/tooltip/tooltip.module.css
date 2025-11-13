@@ -1,0 +1,37 @@
+.tooltip {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--spacing-xs);
+
+  font-size: var(--font-size-xs);
+  background: var(--color-secondary);
+
+  transition:
+    opacity 200ms,
+    transform 200ms;
+
+  &[data-entering],
+  &[data-exiting] {
+    opacity: 0;
+    transform: var(--origin) scale(0.9);
+  }
+
+  &[data-placement="top"] {
+    margin-bottom: var(--spacing-xs);
+    --origin: translateY(4px);
+  }
+
+  &[data-placement="bottom"] {
+    margin-top: var(--spacing-xs);
+    --origin: translateY(-4px);
+  }
+
+  &[data-placement="right"] {
+    margin-left: var(--spacing-xs);
+    --origin: translateX(-4px);
+  }
+
+  &[data-placement="left"] {
+    margin-right: var(--spacing-xs);
+    --origin: translateX(4px);
+  }
+}

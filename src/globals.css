@@ -1,0 +1,116 @@
+@import "@fontsource/inter";
+
+@layer base {
+  :root {
+    background: var(--color-background);
+    color: var(--color-foreground);
+
+    color-scheme: light dark;
+    font-family: "Inter", sans-serif;
+    user-select: none;
+
+    --color-background: light-dark(#e2e4f0, #171717);
+    --color-foreground: light-dark(black, white);
+
+    --color-primary: #029f80;
+    --color-secondary: #1e1e1e;
+    --color-muted: #636466;
+
+    --color-success: #18be2e;
+    --color-warning: #ffd42a;
+    --color-danger: #7f1d1d;
+
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 2rem;
+  }
+}
+
+@layer react-aria {
+  .react-aria-ModalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0 0 0 / 0.5);
+    z-index: 100;
+
+    &[data-entering] {
+      animation: modal-fade 200ms;
+    }
+
+    &[data-exiting] {
+      animation: modal-fade 150ms reverse ease-in;
+    }
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+}

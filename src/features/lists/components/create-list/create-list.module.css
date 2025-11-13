@@ -1,0 +1,10 @@
+.trigger {
+  width: 300px;
+  height: fit-content;
+
+  margin-top: 48px;
+
+  color: var(--color-muted);
+
+  justify-content: start;
+}

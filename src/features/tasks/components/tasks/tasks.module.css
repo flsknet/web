@@ -1,0 +1,10 @@
+.task {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+
+  background: var(--color-secondary);
+}
+
+.taskDescription {
+  color: var(--color-muted);
+}

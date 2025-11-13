@@ -1,0 +1,28 @@
+.table {
+  border-radius: var(--radius-sm);
+  border-collapse: collapse;
+
+  overflow: hidden;
+}
+
+.tableHead {
+  background: var(--color-primary);
+  border-spacing: 0;
+}
+
+.tableColumn {
+  padding: var(--spacing-sm);
+  text-align: start;
+}
+
+.tableBody {
+  background: var(--color-secondary);
+}
+
+.tableRow {
+  margin-top: 5px;
+}
+
+.tableCell {
+  padding: var(--spacing-sm);
+}

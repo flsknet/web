@@ -1,0 +1,5 @@
+.button {
+  color: var(--color-muted);
+
+  justify-content: start;
+}

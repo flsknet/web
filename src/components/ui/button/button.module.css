@@ -1,0 +1,44 @@
+.button {
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-md);
+
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  &:not(&[data-disabled]) {
+    cursor: pointer;
+  }
+
+  &:active {
+    scale: 0.95;
+  }
+}
+
+.primary {
+  background: var(--color-primary);
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-primary) 80%, transparent);
+  }
+}
+
+.secondary {
+  background: var(--color-secondary);
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-secondary) 80%, transparent);
+  }
+}
+
+.danger {
+  background: var(--color-danger);
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-danger) 80%, transparent);
+  }
+}

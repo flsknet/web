@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.list {
+  width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.listHeader {
+  height: 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listName {
+  font-size: var(--font-size-lg);
+  font-weight: bolder;
+}

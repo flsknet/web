@@ -1,0 +1,4 @@
+.link {
+  color: var(--color-foreground);
+  font-size: var(--font-size-sm);
+}

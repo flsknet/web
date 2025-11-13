@@ -1,0 +1,55 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  &:not(&[data-disabled]) {
+    cursor: pointer;
+  }
+
+  &[data-selected] .icon {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.inner {
+  height: 20px;
+  width: 20px;
+
+  border-radius: var(--radius-sm);
+  background: var(--color-secondary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: background-color 200ms;
+}
+
+.icon {
+  opacity: 0;
+  transform: translateY(2px);
+
+  transition:
+    opacity 200ms,
+    transform 200ms;
+}
+
+.primary {
+  &[data-selected] .inner {
+    background: var(--color-primary);
+  }
+}
+
+.secondary {
+  &[data-selected] .inner {
+    background: var(--color-secondary);
+  }
+}
+
+.danger {
+  &[data-selected] .inner {
+    background: var(--color-danger);
+  }
+}
