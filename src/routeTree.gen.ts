@@ -28,6 +28,7 @@ import { Route as AppOrganisationsOrganisationIdIndexRouteImport } from './route
 import { Route as AppOrganisationsOrganisationIdSettingsRouteImport } from './routes/_app/organisations/$organisationId/settings'
 import { Route as AppOrganisationsOrganisationIdOverviewRouteImport } from './routes/_app/organisations/$organisationId/overview'
 import { Route as AppOrganisationsOrganisationIdMembersRouteImport } from './routes/_app/organisations/$organisationId/members'
+import { Route as AppOrganisationsOrganisationIdEventsRouteImport } from './routes/_app/organisations/$organisationId/events'
 import { Route as AppOrganisationsOrganisationIdBoardsIndexRouteImport } from './routes/_app/organisations/$organisationId/boards/index'
 import { Route as AppOrganisationsOrganisationIdBoardsBoardIdRouteImport } from './routes/_app/organisations/$organisationId/boards/$boardId'
 
@@ -129,6 +130,12 @@ const AppOrganisationsOrganisationIdMembersRoute =
     path: '/members',
     getParentRoute: () => AppOrganisationsOrganisationIdRoute,
   } as any)
+const AppOrganisationsOrganisationIdEventsRoute =
+  AppOrganisationsOrganisationIdEventsRouteImport.update({
+    id: '/events',
+    path: '/events',
+    getParentRoute: () => AppOrganisationsOrganisationIdRoute,
+  } as any)
 const AppOrganisationsOrganisationIdBoardsIndexRoute =
   AppOrganisationsOrganisationIdBoardsIndexRouteImport.update({
     id: '/boards/',
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/settings/profile': typeof AppSettingsProfileRoute
   '/organisations/': typeof AppOrganisationsIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
+  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
@@ -174,6 +182,7 @@ export interface FileRoutesByTo {
   '/settings/profile': typeof AppSettingsProfileRoute
   '/organisations': typeof AppOrganisationsIndexRoute
   '/settings': typeof AppSettingsIndexRoute
+  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
@@ -198,6 +207,7 @@ export interface FileRoutesById {
   '/_app/settings/profile': typeof AppSettingsProfileRoute
   '/_app/organisations/': typeof AppOrganisationsIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
+  '/_app/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/_app/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/_app/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/_app/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/settings/profile'
     | '/organisations/'
     | '/settings/'
+    | '/organisations/$organisationId/events'
     | '/organisations/$organisationId/members'
     | '/organisations/$organisationId/overview'
     | '/organisations/$organisationId/settings'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/settings/profile'
     | '/organisations'
     | '/settings'
+    | '/organisations/$organisationId/events'
     | '/organisations/$organisationId/members'
     | '/organisations/$organisationId/overview'
     | '/organisations/$organisationId/settings'
@@ -262,6 +274,7 @@ export interface FileRouteTypes {
     | '/_app/settings/profile'
     | '/_app/organisations/'
     | '/_app/settings/'
+    | '/_app/organisations/$organisationId/events'
     | '/_app/organisations/$organisationId/members'
     | '/_app/organisations/$organisationId/overview'
     | '/_app/organisations/$organisationId/settings'
@@ -410,6 +423,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganisationsOrganisationIdMembersRouteImport
       parentRoute: typeof AppOrganisationsOrganisationIdRoute
     }
+    '/_app/organisations/$organisationId/events': {
+      id: '/_app/organisations/$organisationId/events'
+      path: '/events'
+      fullPath: '/organisations/$organisationId/events'
+      preLoaderRoute: typeof AppOrganisationsOrganisationIdEventsRouteImport
+      parentRoute: typeof AppOrganisationsOrganisationIdRoute
+    }
     '/_app/organisations/$organisationId/boards/': {
       id: '/_app/organisations/$organisationId/boards/'
       path: '/boards'
@@ -428,6 +448,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppOrganisationsOrganisationIdRouteChildren {
+  AppOrganisationsOrganisationIdEventsRoute: typeof AppOrganisationsOrganisationIdEventsRoute
   AppOrganisationsOrganisationIdMembersRoute: typeof AppOrganisationsOrganisationIdMembersRoute
   AppOrganisationsOrganisationIdOverviewRoute: typeof AppOrganisationsOrganisationIdOverviewRoute
   AppOrganisationsOrganisationIdSettingsRoute: typeof AppOrganisationsOrganisationIdSettingsRoute
@@ -438,6 +459,8 @@ interface AppOrganisationsOrganisationIdRouteChildren {
 
 const AppOrganisationsOrganisationIdRouteChildren: AppOrganisationsOrganisationIdRouteChildren =
   {
+    AppOrganisationsOrganisationIdEventsRoute:
+      AppOrganisationsOrganisationIdEventsRoute,
     AppOrganisationsOrganisationIdMembersRoute:
       AppOrganisationsOrganisationIdMembersRoute,
     AppOrganisationsOrganisationIdOverviewRoute:

@@ -2,9 +2,10 @@ import { Link } from "@tanstack/react-router";
 
 import { useOrganisations } from "~/features/organisations/api/get-organisations";
 
-import styles from "./organisation-list.module.css";
+import styles from "./organisations.module.css";
+import { CreateOrganisation } from "../create-organisation";
 
-export const OrganisationList = () => {
+export const Organisations = () => {
   const { data, isPending } = useOrganisations();
 
   if (isPending) {
@@ -22,6 +23,7 @@ export const OrganisationList = () => {
           <div>{name}</div>
         </Link>
       ))}
+      <CreateOrganisation />
     </div>
   );
 };

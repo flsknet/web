@@ -5,7 +5,11 @@ type UserProps = {
 };
 
 export const User = ({ userId }: UserProps) => {
-  const { data } = useUser(userId);
+  const { data, isPending } = useUser(userId);
 
-  return <span>{data?.name}</span>;
+  if (isPending) {
+    return <span>...</span>;
+  }
+
+  return <span>{data!.name}</span>;
 };

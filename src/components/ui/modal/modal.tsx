@@ -4,6 +4,7 @@ import {
   type DialogTriggerProps,
   Modal as ModalPrimitive,
   Dialog,
+  ModalOverlay,
 } from "react-aria-components";
 
 import styles from "./modal.module.css";
@@ -23,8 +24,10 @@ type ModalProps = {
 
 export const Modal = ({ children }: ModalProps) => {
   return (
-    <ModalPrimitive>
-      <Dialog className={styles.modal}>{children}</Dialog>
-    </ModalPrimitive>
+    <ModalOverlay className={styles.overlay}>
+      <ModalPrimitive>
+        <Dialog className={styles.modal}>{children}</Dialog>
+      </ModalPrimitive>
+    </ModalOverlay>
   );
 };

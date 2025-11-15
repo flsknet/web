@@ -26,7 +26,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       <header className={styles.header}>
         <div className={styles.logo}>Flask</div>
       </header>
-      <main className={styles.wrapper}>{children}</main>
+      {children}
     </>
   );
 };

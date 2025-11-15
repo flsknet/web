@@ -5,14 +5,14 @@ import z from "zod";
 import { api } from "~/lib/api-client";
 import type { QueryConfig } from "~/lib/react-query";
 
-const boardsSchema = z.object({
+const boardSchema = z.object({
   id: z.string(),
   name: z.string(),
 });
 
 const getBoards = async ({ organisationId }: { organisationId: string }) => {
   const { data } = await api.get(`/organisations/${organisationId}/boards`);
-  return boardsSchema.array().parse(data);
+  return boardSchema.array().parse(data);
 };
 
 export const getBoardsQueryOptions = (organisationId: string) => {

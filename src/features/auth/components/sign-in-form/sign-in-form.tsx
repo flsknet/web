@@ -22,9 +22,6 @@ export const SignInForm = ({ onSuccess }: SignInFormProps) => {
       onSubmit={(data) => signIn({ data })}
       schema={signInInputSchema}
     >
-      <h1>
-        <Trans>Sign in</Trans>
-      </h1>
       <TextInput
         name="email"
         label="Email"

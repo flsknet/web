@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Page } from "~/components/ui/page/page";
+import { ContentLayout } from "~/components/layouts/content-layout";
 
 import { DeleteOrganisation } from "~/features/organisations/components/delete-organisation";
 import { UpdateOrganisation } from "~/features/organisations/components/update-organisation";
@@ -12,11 +12,10 @@ export const Route = createFileRoute(
     const { organisationId } = Route.useParams();
 
     return (
-      <Page>
-        <h1>Organisation settings</h1>
+      <ContentLayout title="Organisation settings">
         <UpdateOrganisation organisationId={organisationId} />
         <DeleteOrganisation organisationId={organisationId} />
-      </Page>
+      </ContentLayout>
     );
   },
 });

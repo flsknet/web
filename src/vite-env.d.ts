@@ -1,7 +1,5 @@
 /// <reference types="vite/client" />
 
-declare module "*.po";
-
 interface ImportMetaEnv {
   readonly VITE_API_URL: string;
 }
@@ -9,3 +7,5 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module "*.po";

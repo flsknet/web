@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ContentLayout } from "~/components/layouts/content-layout";
+import { SidebarTrigger } from "~/components/ui/sidebar";
 
 export const Route = createFileRoute(
   "/_app/organisations/$organisationId/overview"
 )({
-  component: RouteComponent,
+  component: () => (
+    <ContentLayout title="Overview">
+      <SidebarTrigger />
+    </ContentLayout>
+  ),
 });
-
-function RouteComponent() {
-  return <div>Hello "/_app/organisations/$organisationId/overview"!</div>;
-}

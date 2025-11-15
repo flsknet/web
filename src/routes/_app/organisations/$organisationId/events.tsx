@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ContentLayout } from "~/components/layouts/content-layout";
-import { Members } from "~/features/members/components/members";
+import { Events } from "~/features/events/components/events/events";
 
 export const Route = createFileRoute(
-  "/_app/organisations/$organisationId/members"
+  "/_app/organisations/$organisationId/events"
 )({
   component: () => {
     const { organisationId } = Route.useParams();
 
     return (
-      <ContentLayout title="Members">
-        <Members organisationId={organisationId} />
+      <ContentLayout title="Events">
+        <Events organisationsId={organisationId} />
       </ContentLayout>
     );
   },

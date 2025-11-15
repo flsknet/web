@@ -23,7 +23,6 @@ export const UpdateOrganisation = ({
       onSubmit={(data) => mutate({ organisationId, data })}
       schema={updateOrganisationInputSchema}
     >
-      <h2>Edit organisation</h2>
       <TextInput
         name="name"
         label="Organisation name"

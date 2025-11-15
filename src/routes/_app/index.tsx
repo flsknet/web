@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Page } from "~/components/ui/page/page";
+import { Home } from "~/components/views/home/home";
 
 export const Route = createFileRoute("/_app/")({
-  component: () => {
-    return <Page centered>Flask app</Page>;
-  },
+  component: () => <Home />,
 });

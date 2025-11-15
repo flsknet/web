@@ -2,13 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { useBoards } from "../../api/get-boards";
 import { CreateBoard } from "../create-board";
 
-import styles from "./board-list.module.css";
+import styles from "./boards.module.css";
 
-type BoardListProps = {
+type BoardsProps = {
   organisationId: string;
 };
 
-export const BoardList = ({ organisationId }: BoardListProps) => {
+export const Boards = ({ organisationId }: BoardsProps) => {
   const { data } = useBoards(organisationId);
 
   return (

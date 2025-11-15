@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Page } from "~/components/ui/page/page";
-import { BoardList } from "~/features/boards/components/board-list";
+import { ContentLayout } from "~/components/layouts/content-layout";
+import { Boards } from "~/features/boards/components/boards";
 
 export const Route = createFileRoute(
   "/_app/organisations/$organisationId/boards/"
@@ -10,10 +10,9 @@ export const Route = createFileRoute(
     const { organisationId } = Route.useParams();
 
     return (
-      <Page>
-        <h1>Boards</h1>
-        <BoardList organisationId={organisationId} />
-      </Page>
+      <ContentLayout title="Boards">
+        <Boards organisationId={organisationId} />
+      </ContentLayout>
     );
   },
 });

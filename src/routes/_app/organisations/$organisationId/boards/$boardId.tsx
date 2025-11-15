@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Page } from "~/components/ui/page/page";
-import { useBoard } from "~/features/boards/api/get-boards";
+import { ContentLayout } from "~/components/layouts/content-layout";
 
+import { useBoard } from "~/features/boards/api/get-boards";
 import { Lists } from "~/features/lists/components/lists";
 
 export const Route = createFileRoute(
@@ -13,13 +13,13 @@ export const Route = createFileRoute(
     const { data } = useBoard(organisationId, boardId);
 
     return (
-      <Page>
+      <ContentLayout title={data?.name}>
         <h1>{data?.name}</h1>
         <Lists
           organisationId={organisationId}
           boardId={boardId}
         />
-      </Page>
+      </ContentLayout>
     );
   },
 });

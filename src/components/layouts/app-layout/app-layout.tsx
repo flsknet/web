@@ -1,10 +1,13 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { Link, Navigate } from "@tanstack/react-router";
-import { Building2Icon, HomeIcon, SettingsIcon } from "lucide-react";
+import { Building2Icon, HomeIcon, MenuIcon, SettingsIcon } from "lucide-react";
 
 import { useSession } from "~/lib/auth";
 
 import styles from "./app-layout.module.css";
+import { Button } from "~/components/ui/button";
+import { useDisclosure } from "~/hooks/use-disclosure";
+import { useIsMobile } from "~/hooks/use-is-mobile";
 
 const NAVBAR_LINKS = [
   {
@@ -31,6 +34,15 @@ type AppLayoutProps = {
 export const AppLayout = ({ children }: AppLayoutProps) => {
   const session = useSession();
 
+  const isMobile = useIsMobile();
+  const [isOpen, { toggle, close }] = useDisclosure();
+
+  useEffect(() => {
+    if (!isMobile) {
+      close();
+    }
+  }, [isMobile]);
+
   if (session.isPending) {
     // TODO: Add loading ui.
     return <></>;
@@ -42,25 +54,40 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
-        <div className={styles.topbar}>Flask</div>
-        <nav className={styles.navbar}>
-          {NAVBAR_LINKS.map(({ icon, to, label }) => (
-            <Link
-              className={styles.navbarLink}
-              to={to}
-            >
-              {icon}
-              {label}
-            </Link>
-          ))}
+      <div className={styles.header}>
+        <div className={styles.topbar}>
+          Flask
+          <Button onClick={toggle}>
+            <MenuIcon />
+          </Button>
+        </div>
+        <nav
+          className={styles.navbar}
+          data-open={isOpen}
+        >
+          <div>
+            {NAVBAR_LINKS.map(({ icon, to, label }) => (
+              <Link
+                className={styles.navbarLink}
+                activeProps={{ className: styles.navbarLinkActive }}
+                onClick={close}
+                to={to}
+                key={to}
+              >
+                {icon}
+                {label}
+              </Link>
+            ))}
+          </div>
         </nav>
-      </header>
+      </div>
       <nav className={styles.sidebar}>
         {NAVBAR_LINKS.map(({ icon, to }) => (
           <Link
             className={styles.sidebarLink}
+            activeProps={{ className: styles.sidebarLinkActive }}
             to={to}
+            key={to}
           >
             {icon}
           </Link>

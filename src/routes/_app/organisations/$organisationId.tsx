@@ -6,24 +6,27 @@ import {
   SidebarHeader,
   SidebarLink,
   SidebarProvider,
+  SidebarTrigger,
 } from "~/components/ui/sidebar";
 
 import { useOrganisations } from "~/features/organisations/api/get-organisations";
 import { getBoardsQueryOptions } from "~/features/boards/api/get-boards";
 import {
   Building2Icon,
+  CalendarDaysIcon,
   SettingsIcon,
-  SquareKanban,
+  SquareKanbanIcon,
   UsersIcon,
 } from "lucide-react";
+import { getEventsQueryOptions } from "~/features/events/api/get-events";
 
 export const Route = createFileRoute("/_app/organisations/$organisationId")({
   beforeLoad: async ({ params: { organisationId } }) => {
     await queryClient.ensureQueryData(getBoardsQueryOptions(organisationId));
+    await queryClient.ensureQueryData(getEventsQueryOptions(organisationId));
   },
   component: () => {
     const { organisationId } = Route.useParams();
-
     const { data } = useOrganisations();
 
     return (
@@ -41,8 +44,12 @@ export const Route = createFileRoute("/_app/organisations/$organisationId")({
             Members
           </SidebarLink>
           <SidebarLink to="/organisations/$organisationId/boards">
-            <SquareKanban size={20} />
+            <SquareKanbanIcon size={20} />
             Boards
+          </SidebarLink>
+          <SidebarLink to="/organisations/$organisationId/events">
+            <CalendarDaysIcon size={20} />
+            Events
           </SidebarLink>
           <SidebarLink to="/organisations/$organisationId/settings">
             <SettingsIcon size={20} />
