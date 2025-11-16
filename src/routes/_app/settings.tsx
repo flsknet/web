@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { Trans } from "@lingui/react/macro";
 
 import {
   Sidebar,
@@ -8,19 +9,20 @@ import {
 } from "~/components/ui/sidebar";
 
 export const Route = createFileRoute("/_app/settings")({
-  component: () => {
-    return (
-      <SidebarProvider>
-        <Sidebar>
-          <SidebarHeader>Settings</SidebarHeader>
-          <SidebarLink to="/settings/general">General</SidebarLink>
-          <SidebarLink to="/settings/account">Account</SidebarLink>
-          <SidebarLink to="/settings/profile">Profile</SidebarLink>
-          <SidebarLink to="/settings/appearance">Appearance</SidebarLink>
-          <SidebarLink to="/settings/language">Language</SidebarLink>
-        </Sidebar>
-        <Outlet />
-      </SidebarProvider>
-    );
-  },
+  component: () => (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarHeader>
+          <Trans>Settings</Trans>
+        </SidebarHeader>
+        <SidebarLink to="/settings/general">
+          <Trans>General</Trans>
+        </SidebarLink>
+        <SidebarLink to="/settings/account">
+          <Trans>Account</Trans>
+        </SidebarLink>
+      </Sidebar>
+      <Outlet />
+    </SidebarProvider>
+  ),
 });

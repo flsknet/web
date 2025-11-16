@@ -8,7 +8,7 @@ import { getEventsQueryOptions } from "./get-events";
 
 export const createEventInputSchema = z.object({
   name: z.string().min(1),
-  descriptiom: z.string().optional(),
+  description: z.string().optional(),
 });
 
 export type CreateEventInput = z.infer<typeof createEventInputSchema>;

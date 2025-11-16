@@ -8,7 +8,7 @@ import type { QueryConfig } from "~/lib/react-query";
 const eventSchema = z.object({
   id: z.string(),
   name: z.string(),
-  description: z.string().optional(),
+  description: z.string().nullable(),
 });
 
 const getEvents = async ({ organisationId }: { organisationId: string }) => {

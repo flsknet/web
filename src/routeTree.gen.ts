@@ -18,18 +18,16 @@ import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppOrganisationsRouteImport } from './routes/_app/organisations'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppOrganisationsIndexRouteImport } from './routes/_app/organisations/index'
-import { Route as AppSettingsProfileRouteImport } from './routes/_app/settings/profile'
-import { Route as AppSettingsLanguageRouteImport } from './routes/_app/settings/language'
 import { Route as AppSettingsGeneralRouteImport } from './routes/_app/settings/general'
-import { Route as AppSettingsAppearanceRouteImport } from './routes/_app/settings/appearance'
 import { Route as AppSettingsAccountRouteImport } from './routes/_app/settings/account'
 import { Route as AppOrganisationsOrganisationIdRouteImport } from './routes/_app/organisations/$organisationId'
 import { Route as AppOrganisationsOrganisationIdIndexRouteImport } from './routes/_app/organisations/$organisationId/index'
 import { Route as AppOrganisationsOrganisationIdSettingsRouteImport } from './routes/_app/organisations/$organisationId/settings'
 import { Route as AppOrganisationsOrganisationIdOverviewRouteImport } from './routes/_app/organisations/$organisationId/overview'
 import { Route as AppOrganisationsOrganisationIdMembersRouteImport } from './routes/_app/organisations/$organisationId/members'
-import { Route as AppOrganisationsOrganisationIdEventsRouteImport } from './routes/_app/organisations/$organisationId/events'
+import { Route as AppOrganisationsOrganisationIdEventsIndexRouteImport } from './routes/_app/organisations/$organisationId/events/index'
 import { Route as AppOrganisationsOrganisationIdBoardsIndexRouteImport } from './routes/_app/organisations/$organisationId/boards/index'
+import { Route as AppOrganisationsOrganisationIdEventsEventIdRouteImport } from './routes/_app/organisations/$organisationId/events/$eventId'
 import { Route as AppOrganisationsOrganisationIdBoardsBoardIdRouteImport } from './routes/_app/organisations/$organisationId/boards/$boardId'
 
 const AuthRoute = AuthRouteImport.update({
@@ -75,24 +73,9 @@ const AppOrganisationsIndexRoute = AppOrganisationsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppOrganisationsRoute,
 } as any)
-const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => AppSettingsRoute,
-} as any)
-const AppSettingsLanguageRoute = AppSettingsLanguageRouteImport.update({
-  id: '/language',
-  path: '/language',
-  getParentRoute: () => AppSettingsRoute,
-} as any)
 const AppSettingsGeneralRoute = AppSettingsGeneralRouteImport.update({
   id: '/general',
   path: '/general',
-  getParentRoute: () => AppSettingsRoute,
-} as any)
-const AppSettingsAppearanceRoute = AppSettingsAppearanceRouteImport.update({
-  id: '/appearance',
-  path: '/appearance',
   getParentRoute: () => AppSettingsRoute,
 } as any)
 const AppSettingsAccountRoute = AppSettingsAccountRouteImport.update({
@@ -130,16 +113,22 @@ const AppOrganisationsOrganisationIdMembersRoute =
     path: '/members',
     getParentRoute: () => AppOrganisationsOrganisationIdRoute,
   } as any)
-const AppOrganisationsOrganisationIdEventsRoute =
-  AppOrganisationsOrganisationIdEventsRouteImport.update({
-    id: '/events',
-    path: '/events',
+const AppOrganisationsOrganisationIdEventsIndexRoute =
+  AppOrganisationsOrganisationIdEventsIndexRouteImport.update({
+    id: '/events/',
+    path: '/events/',
     getParentRoute: () => AppOrganisationsOrganisationIdRoute,
   } as any)
 const AppOrganisationsOrganisationIdBoardsIndexRoute =
   AppOrganisationsOrganisationIdBoardsIndexRouteImport.update({
     id: '/boards/',
     path: '/boards/',
+    getParentRoute: () => AppOrganisationsOrganisationIdRoute,
+  } as any)
+const AppOrganisationsOrganisationIdEventsEventIdRoute =
+  AppOrganisationsOrganisationIdEventsEventIdRouteImport.update({
+    id: '/events/$eventId',
+    path: '/events/$eventId',
     getParentRoute: () => AppOrganisationsOrganisationIdRoute,
   } as any)
 const AppOrganisationsOrganisationIdBoardsBoardIdRoute =
@@ -157,38 +146,34 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/organisations/$organisationId': typeof AppOrganisationsOrganisationIdRouteWithChildren
   '/settings/account': typeof AppSettingsAccountRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
   '/settings/general': typeof AppSettingsGeneralRoute
-  '/settings/language': typeof AppSettingsLanguageRoute
-  '/settings/profile': typeof AppSettingsProfileRoute
   '/organisations/': typeof AppOrganisationsIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
-  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
   '/organisations/$organisationId/': typeof AppOrganisationsOrganisationIdIndexRoute
   '/organisations/$organisationId/boards/$boardId': typeof AppOrganisationsOrganisationIdBoardsBoardIdRoute
+  '/organisations/$organisationId/events/$eventId': typeof AppOrganisationsOrganisationIdEventsEventIdRoute
   '/organisations/$organisationId/boards': typeof AppOrganisationsOrganisationIdBoardsIndexRoute
+  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsIndexRoute
 }
 export interface FileRoutesByTo {
   '/signin': typeof AuthSigninRoute
   '/signup': typeof AuthSignupRoute
   '/': typeof AppIndexRoute
   '/settings/account': typeof AppSettingsAccountRoute
-  '/settings/appearance': typeof AppSettingsAppearanceRoute
   '/settings/general': typeof AppSettingsGeneralRoute
-  '/settings/language': typeof AppSettingsLanguageRoute
-  '/settings/profile': typeof AppSettingsProfileRoute
   '/organisations': typeof AppOrganisationsIndexRoute
   '/settings': typeof AppSettingsIndexRoute
-  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
   '/organisations/$organisationId': typeof AppOrganisationsOrganisationIdIndexRoute
   '/organisations/$organisationId/boards/$boardId': typeof AppOrganisationsOrganisationIdBoardsBoardIdRoute
+  '/organisations/$organisationId/events/$eventId': typeof AppOrganisationsOrganisationIdEventsEventIdRoute
   '/organisations/$organisationId/boards': typeof AppOrganisationsOrganisationIdBoardsIndexRoute
+  '/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,19 +186,17 @@ export interface FileRoutesById {
   '/_app/': typeof AppIndexRoute
   '/_app/organisations/$organisationId': typeof AppOrganisationsOrganisationIdRouteWithChildren
   '/_app/settings/account': typeof AppSettingsAccountRoute
-  '/_app/settings/appearance': typeof AppSettingsAppearanceRoute
   '/_app/settings/general': typeof AppSettingsGeneralRoute
-  '/_app/settings/language': typeof AppSettingsLanguageRoute
-  '/_app/settings/profile': typeof AppSettingsProfileRoute
   '/_app/organisations/': typeof AppOrganisationsIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
-  '/_app/organisations/$organisationId/events': typeof AppOrganisationsOrganisationIdEventsRoute
   '/_app/organisations/$organisationId/members': typeof AppOrganisationsOrganisationIdMembersRoute
   '/_app/organisations/$organisationId/overview': typeof AppOrganisationsOrganisationIdOverviewRoute
   '/_app/organisations/$organisationId/settings': typeof AppOrganisationsOrganisationIdSettingsRoute
   '/_app/organisations/$organisationId/': typeof AppOrganisationsOrganisationIdIndexRoute
   '/_app/organisations/$organisationId/boards/$boardId': typeof AppOrganisationsOrganisationIdBoardsBoardIdRoute
+  '/_app/organisations/$organisationId/events/$eventId': typeof AppOrganisationsOrganisationIdEventsEventIdRoute
   '/_app/organisations/$organisationId/boards/': typeof AppOrganisationsOrganisationIdBoardsIndexRoute
+  '/_app/organisations/$organisationId/events/': typeof AppOrganisationsOrganisationIdEventsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -225,38 +208,34 @@ export interface FileRouteTypes {
     | '/'
     | '/organisations/$organisationId'
     | '/settings/account'
-    | '/settings/appearance'
     | '/settings/general'
-    | '/settings/language'
-    | '/settings/profile'
     | '/organisations/'
     | '/settings/'
-    | '/organisations/$organisationId/events'
     | '/organisations/$organisationId/members'
     | '/organisations/$organisationId/overview'
     | '/organisations/$organisationId/settings'
     | '/organisations/$organisationId/'
     | '/organisations/$organisationId/boards/$boardId'
+    | '/organisations/$organisationId/events/$eventId'
     | '/organisations/$organisationId/boards'
+    | '/organisations/$organisationId/events'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/signin'
     | '/signup'
     | '/'
     | '/settings/account'
-    | '/settings/appearance'
     | '/settings/general'
-    | '/settings/language'
-    | '/settings/profile'
     | '/organisations'
     | '/settings'
-    | '/organisations/$organisationId/events'
     | '/organisations/$organisationId/members'
     | '/organisations/$organisationId/overview'
     | '/organisations/$organisationId/settings'
     | '/organisations/$organisationId'
     | '/organisations/$organisationId/boards/$boardId'
+    | '/organisations/$organisationId/events/$eventId'
     | '/organisations/$organisationId/boards'
+    | '/organisations/$organisationId/events'
   id:
     | '__root__'
     | '/_app'
@@ -268,19 +247,17 @@ export interface FileRouteTypes {
     | '/_app/'
     | '/_app/organisations/$organisationId'
     | '/_app/settings/account'
-    | '/_app/settings/appearance'
     | '/_app/settings/general'
-    | '/_app/settings/language'
-    | '/_app/settings/profile'
     | '/_app/organisations/'
     | '/_app/settings/'
-    | '/_app/organisations/$organisationId/events'
     | '/_app/organisations/$organisationId/members'
     | '/_app/organisations/$organisationId/overview'
     | '/_app/organisations/$organisationId/settings'
     | '/_app/organisations/$organisationId/'
     | '/_app/organisations/$organisationId/boards/$boardId'
+    | '/_app/organisations/$organisationId/events/$eventId'
     | '/_app/organisations/$organisationId/boards/'
+    | '/_app/organisations/$organisationId/events/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -353,32 +330,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganisationsIndexRouteImport
       parentRoute: typeof AppOrganisationsRoute
     }
-    '/_app/settings/profile': {
-      id: '/_app/settings/profile'
-      path: '/profile'
-      fullPath: '/settings/profile'
-      preLoaderRoute: typeof AppSettingsProfileRouteImport
-      parentRoute: typeof AppSettingsRoute
-    }
-    '/_app/settings/language': {
-      id: '/_app/settings/language'
-      path: '/language'
-      fullPath: '/settings/language'
-      preLoaderRoute: typeof AppSettingsLanguageRouteImport
-      parentRoute: typeof AppSettingsRoute
-    }
     '/_app/settings/general': {
       id: '/_app/settings/general'
       path: '/general'
       fullPath: '/settings/general'
       preLoaderRoute: typeof AppSettingsGeneralRouteImport
-      parentRoute: typeof AppSettingsRoute
-    }
-    '/_app/settings/appearance': {
-      id: '/_app/settings/appearance'
-      path: '/appearance'
-      fullPath: '/settings/appearance'
-      preLoaderRoute: typeof AppSettingsAppearanceRouteImport
       parentRoute: typeof AppSettingsRoute
     }
     '/_app/settings/account': {
@@ -423,11 +379,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganisationsOrganisationIdMembersRouteImport
       parentRoute: typeof AppOrganisationsOrganisationIdRoute
     }
-    '/_app/organisations/$organisationId/events': {
-      id: '/_app/organisations/$organisationId/events'
+    '/_app/organisations/$organisationId/events/': {
+      id: '/_app/organisations/$organisationId/events/'
       path: '/events'
       fullPath: '/organisations/$organisationId/events'
-      preLoaderRoute: typeof AppOrganisationsOrganisationIdEventsRouteImport
+      preLoaderRoute: typeof AppOrganisationsOrganisationIdEventsIndexRouteImport
       parentRoute: typeof AppOrganisationsOrganisationIdRoute
     }
     '/_app/organisations/$organisationId/boards/': {
@@ -435,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/boards'
       fullPath: '/organisations/$organisationId/boards'
       preLoaderRoute: typeof AppOrganisationsOrganisationIdBoardsIndexRouteImport
+      parentRoute: typeof AppOrganisationsOrganisationIdRoute
+    }
+    '/_app/organisations/$organisationId/events/$eventId': {
+      id: '/_app/organisations/$organisationId/events/$eventId'
+      path: '/events/$eventId'
+      fullPath: '/organisations/$organisationId/events/$eventId'
+      preLoaderRoute: typeof AppOrganisationsOrganisationIdEventsEventIdRouteImport
       parentRoute: typeof AppOrganisationsOrganisationIdRoute
     }
     '/_app/organisations/$organisationId/boards/$boardId': {
@@ -448,19 +411,18 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppOrganisationsOrganisationIdRouteChildren {
-  AppOrganisationsOrganisationIdEventsRoute: typeof AppOrganisationsOrganisationIdEventsRoute
   AppOrganisationsOrganisationIdMembersRoute: typeof AppOrganisationsOrganisationIdMembersRoute
   AppOrganisationsOrganisationIdOverviewRoute: typeof AppOrganisationsOrganisationIdOverviewRoute
   AppOrganisationsOrganisationIdSettingsRoute: typeof AppOrganisationsOrganisationIdSettingsRoute
   AppOrganisationsOrganisationIdIndexRoute: typeof AppOrganisationsOrganisationIdIndexRoute
   AppOrganisationsOrganisationIdBoardsBoardIdRoute: typeof AppOrganisationsOrganisationIdBoardsBoardIdRoute
+  AppOrganisationsOrganisationIdEventsEventIdRoute: typeof AppOrganisationsOrganisationIdEventsEventIdRoute
   AppOrganisationsOrganisationIdBoardsIndexRoute: typeof AppOrganisationsOrganisationIdBoardsIndexRoute
+  AppOrganisationsOrganisationIdEventsIndexRoute: typeof AppOrganisationsOrganisationIdEventsIndexRoute
 }
 
 const AppOrganisationsOrganisationIdRouteChildren: AppOrganisationsOrganisationIdRouteChildren =
   {
-    AppOrganisationsOrganisationIdEventsRoute:
-      AppOrganisationsOrganisationIdEventsRoute,
     AppOrganisationsOrganisationIdMembersRoute:
       AppOrganisationsOrganisationIdMembersRoute,
     AppOrganisationsOrganisationIdOverviewRoute:
@@ -471,8 +433,12 @@ const AppOrganisationsOrganisationIdRouteChildren: AppOrganisationsOrganisationI
       AppOrganisationsOrganisationIdIndexRoute,
     AppOrganisationsOrganisationIdBoardsBoardIdRoute:
       AppOrganisationsOrganisationIdBoardsBoardIdRoute,
+    AppOrganisationsOrganisationIdEventsEventIdRoute:
+      AppOrganisationsOrganisationIdEventsEventIdRoute,
     AppOrganisationsOrganisationIdBoardsIndexRoute:
       AppOrganisationsOrganisationIdBoardsIndexRoute,
+    AppOrganisationsOrganisationIdEventsIndexRoute:
+      AppOrganisationsOrganisationIdEventsIndexRoute,
   }
 
 const AppOrganisationsOrganisationIdRouteWithChildren =
@@ -496,19 +462,13 @@ const AppOrganisationsRouteWithChildren =
 
 interface AppSettingsRouteChildren {
   AppSettingsAccountRoute: typeof AppSettingsAccountRoute
-  AppSettingsAppearanceRoute: typeof AppSettingsAppearanceRoute
   AppSettingsGeneralRoute: typeof AppSettingsGeneralRoute
-  AppSettingsLanguageRoute: typeof AppSettingsLanguageRoute
-  AppSettingsProfileRoute: typeof AppSettingsProfileRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
 }
 
 const AppSettingsRouteChildren: AppSettingsRouteChildren = {
   AppSettingsAccountRoute: AppSettingsAccountRoute,
-  AppSettingsAppearanceRoute: AppSettingsAppearanceRoute,
   AppSettingsGeneralRoute: AppSettingsGeneralRoute,
-  AppSettingsLanguageRoute: AppSettingsLanguageRoute,
-  AppSettingsProfileRoute: AppSettingsProfileRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
 }
 

@@ -1,3 +1,5 @@
+import { useLingui, Trans } from "@lingui/react/macro";
+
 import { Form } from "~/components/ui/form";
 import { TextInput } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
@@ -15,7 +17,10 @@ type UpdateOrganisationProps = {
 export const UpdateOrganisation = ({
   organisationId,
 }: UpdateOrganisationProps) => {
+  const { t } = useLingui();
+
   const { mutate } = useUpdateOrganisation();
+
   const { data } = useOrganisation(organisationId);
 
   return (
@@ -25,11 +30,13 @@ export const UpdateOrganisation = ({
     >
       <TextInput
         name="name"
-        label="Organisation name"
-        placeholder="Acme Corporation"
+        label={t`Name`}
+        placeholder={t`Acme Inc.`}
         defaultValue={data!.name}
       />
-      <Button type="submit">Save</Button>
+      <Button type="submit">
+        <Trans>Save</Trans>
+      </Button>
     </Form>
   );
 };

@@ -4,35 +4,29 @@ import { useLingui, Trans } from "@lingui/react/macro";
 import { Button } from "~/components/ui/button";
 import { Modal, ModalTrigger } from "~/components/ui/modal";
 
-import { useDeleteBoard } from "~/features/boards/api/delete-board";
+import { useDeleteUser } from "~/features/users/api/delete-user";
 
-type DeleteBoardProps = {
-  organisationId: string;
-  boardId: string;
+type DeleteUserProps = {
   children?: ReactNode;
 };
 
-export const DeleteBoard = ({
-  children,
-  organisationId,
-  boardId,
-}: DeleteBoardProps) => {
+export const DeleteUser = ({ children }: DeleteUserProps) => {
   const { t } = useLingui();
 
-  const { mutate } = useDeleteBoard();
+  const { mutate } = useDeleteUser();
 
   return (
     <ModalTrigger>
       {children}
       <Modal
-        title={t`Delete board`}
-        description={t`Are you sure you want to delete this board?`}
+        title={t`Delete account`}
+        description={t`Are you sure you want to delete your account?`}
       >
         <Button
           variant="danger"
-          onClick={() => mutate({ organisationId, boardId })}
+          onClick={() => mutate(undefined)}
         >
-          <Trans>Delete board</Trans>
+          <Trans>Delete</Trans>
         </Button>
         <Button
           variant="secondary"

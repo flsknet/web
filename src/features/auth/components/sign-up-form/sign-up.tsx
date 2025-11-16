@@ -7,7 +7,7 @@ import { Button } from "~/components/ui/button";
 
 import { useSignUp, signUpInputSchema } from "~/features/auth/api/sign-up";
 
-import styles from "./sign-up-form.module.css";
+import styles from "./sign-up.module.css";
 
 type SignUpFormProps = {
   onSuccess?: () => void;
@@ -24,24 +24,24 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
     >
       <TextInput
         name="username"
-        label="Username"
+        label={t`Username`}
         placeholder={t`John Doe`}
       />
       <TextInput
         name="email"
-        label="Email"
+        label={t`Email`}
         placeholder={t`john.doe@mail.com`}
         type="email"
       />
       <TextInput
         name="password"
-        label="Password"
+        label={t`Password`}
         placeholder={t`Enter your password.`}
         type="password"
       />
       <TextInput
         name="confirmPassword"
-        label="Confirm password"
+        label={t`Confirm password`}
         placeholder={t`Confirm your password.`}
         type="password"
       />

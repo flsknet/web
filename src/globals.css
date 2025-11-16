@@ -14,7 +14,7 @@
 
     --color-primary: #029f80;
     --color-secondary: #1e1e1e;
-    --color-muted: #636466;
+    --color-muted: #989898;
 
     --color-success: #18be2e;
     --color-warning: #ffd42a;
@@ -37,26 +37,6 @@
     --radius-md: 0.5rem;
     --radius-lg: 1rem;
     --radius-xl: 2rem;
-  }
-}
-
-@layer react-aria {
-  .react-aria-ModalOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0 0 0 / 0.5);
-    z-index: 100;
-
-    &[data-entering] {
-      animation: modal-fade 200ms;
-    }
-
-    &[data-exiting] {
-      animation: modal-fade 150ms reverse ease-in;
-    }
   }
 }
 

@@ -1,0 +1,8 @@
+.create {
+  margin-left: auto;
+  padding: 0;
+}
+
+.link {
+  color: var(--color-foreground);
+}

@@ -1,11 +1,12 @@
+import { t } from "@lingui/core/macro";
 import z from "zod";
 
 z.config({
   customError: (iss) => {
     if (iss.code == "too_small" && iss.minimum == 1) {
-      return "Required";
+      return t`Required`;
     }
 
-    return null;
+    return t`Invalid input`;
   },
 });

@@ -1,9 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useLingui } from "@lingui/react/macro";
+
+import { ContentLayout } from "~/components/layouts/content-layout";
 
 export const Route = createFileRoute("/_app/settings/general")({
-  component: RouteComponent,
-});
+  component: () => {
+    const { t } = useLingui();
 
-function RouteComponent() {
-  return <div>Hello "/_app/settings/general"!</div>;
-}
+    return (
+      <ContentLayout title={t`General settings`}>
+        <div>test</div>
+      </ContentLayout>
+    );
+  },
+});

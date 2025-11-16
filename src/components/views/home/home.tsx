@@ -1,4 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
+import { Trans } from "@lingui/react/macro";
 
 import { Button } from "~/components/ui/button";
 
@@ -10,20 +11,24 @@ export const Home = () => {
   return (
     <div className={styles.wrapper}>
       <div>
-        <h1 className={styles.logo}>Welcome to Flask</h1>
+        <h1 className={styles.logo}>
+          <Trans>Welcome to Flask</Trans>
+        </h1>
         <p>
-          A free and open-source organisation management platform for anybody.
+          <Trans>
+            A free and open-source organisation management platform for anybody.
+          </Trans>
         </p>
       </div>
       <div className={styles.inner}>
         <Button onClick={() => navigate({ to: "/organisations" })}>
-          Get started
+          <Trans>Get started</Trans>
         </Button>
         <Button
           onClick={() => navigate({ to: "/settings" })}
           variant="secondary"
         >
-          Open settings
+          <Trans>Open settings</Trans>
         </Button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useLingui } from "@lingui/react/macro";
+import { useLingui, Trans } from "@lingui/react/macro";
 
 import {
   Table,
@@ -9,10 +9,8 @@ import {
   TableCell,
 } from "~/components/ui/table";
 
-import { useMembers } from "../../api/get-members";
+import { useMembers } from "~/features/members/api/get-members";
 import { User } from "~/features/users/components/user";
-
-import styles from "./members.module.css";
 
 type MembersProps = {
   organisationId: string;
@@ -20,21 +18,28 @@ type MembersProps = {
 
 export const Members = ({ organisationId }: MembersProps) => {
   const { i18n } = useLingui();
+
   const { data, isPending } = useMembers(organisationId);
 
   if (isPending) {
-    return <>Loading</>;
+    return <></>;
   }
 
   return (
-    <Table className={styles.table}>
+    <Table>
       <TableHead>
-        <TableColumn>Name</TableColumn>
-        <TableColumn>Role</TableColumn>
-        <TableColumn>Joined at</TableColumn>
+        <TableColumn isRowHeader>
+          <Trans>Name</Trans>
+        </TableColumn>
+        <TableColumn>
+          <Trans>Role</Trans>
+        </TableColumn>
+        <TableColumn>
+          <Trans>Joined at</Trans>
+        </TableColumn>
       </TableHead>
       <TableBody>
-        {data?.map(({ userId, role, joinedAt }) => (
+        {data!.map(({ userId, role, joinedAt }) => (
           <TableRow key={userId}>
             <TableCell>
               <User userId={userId} />

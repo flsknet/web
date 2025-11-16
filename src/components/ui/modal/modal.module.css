@@ -1,45 +1,65 @@
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   background: rgba(0 0 0 / 0.5);
+  backdrop-filter: blur(5px);
 
   &[data-entering] {
     animation: modal-fade 200ms;
   }
 
   &[data-exiting] {
-    animation: modal-fade 150ms reverse ease-in;
+    animation: modal-fade 200ms ease-in reverse;
   }
 }
 
 .modal {
-  position: absolute;
+  min-width: 300px;
+
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
 
   background-color: var(--color-background);
 
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
 
-  z-index: 110;
-
   &[data-entering] {
-    animation: modal-zoom 300ms;
+    animation: modal-zoom 200ms;
   }
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.heading {
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+}
+
+.description {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-muted);
 }
 
 @keyframes modal-zoom {
   from {
-    transform: scale(0.8);
+    transform: translate(-50%, -40%) scale(0.9);
   }
 
   to {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 

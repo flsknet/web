@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Trans, useLingui } from "@lingui/react/macro";
+import { useLingui, Trans } from "@lingui/react/macro";
 
 import { Modal, ModalTrigger } from "~/components/ui/modal";
 import { Form } from "~/components/ui/form";
@@ -7,31 +7,37 @@ import { TextInput } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 
 import {
-  useCreateOrganisation,
-  createOrganisationInputSchema,
-} from "~/features/organisations/api/create-organisation";
+  createEventInputSchema,
+  useCreateEvent,
+} from "~/features/events/api/create-event";
 
-type CreateOrganisationProps = {
+type CreateEventProps = {
+  organisationId: string;
   children?: ReactNode;
 };
 
-export const CreateOrganisation = ({ children }: CreateOrganisationProps) => {
+export const CreateEvent = ({ children, organisationId }: CreateEventProps) => {
   const { t } = useLingui();
 
-  const { mutate } = useCreateOrganisation();
+  const { mutate } = useCreateEvent();
 
   return (
     <ModalTrigger>
       {children}
-      <Modal title={t`Create an organisation`}>
+      <Modal title={t`Create an event`}>
         <Form
-          onSubmit={(data) => mutate({ data })}
-          schema={createOrganisationInputSchema}
+          onSubmit={(data) => mutate({ organisationId, data })}
+          schema={createEventInputSchema}
         >
           <TextInput
             name="name"
             label={t`Name`}
-            placeholder={t`Acme Inc.`}
+            placeholder={t`Meeting`}
+          />
+          <TextInput
+            name="description"
+            label={t`Description`}
+            placeholder={t`What is this event about?`}
           />
           <Button type="submit">
             <Trans>Create</Trans>
